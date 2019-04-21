@@ -9,6 +9,7 @@ Shader "Custom/PowerOrb"
         _SpecColor ("Specular Color", Color) = (1,1,1,1)
         _Spike ("Growth", Float) = 1.0
         _Speed ("Speed", Float) = 1.0
+
     }
     SubShader
     {
@@ -49,9 +50,12 @@ Shader "Custom/PowerOrb"
                 float3 norm = normalize(v.normal);
 
                 float3 s = normalize(v.vertex.xyz);
-
-                //v.vertex.xyz += norm * (_Spike * (sin(_Time.y * _Speed) + 1)) *fmod(s.x, 2)*fmod(s.y, 2)*fmod(s.z, 2);
-                v.vertex.xyz += norm * (_Spike * (sin(_Time.y * _Speed)+1));
+                if(cos(_Time.y * _Speed) > 0.0){
+                    v.vertex.xyz += norm * (_Spike * (sin(_Time.y * _Speed) + 1))
+                    *fmod(s.x, 2)*fmod(s.y, 2)*fmod(s.z, 2);
+                } else {
+                    v.vertex.xyz += norm * (_Spike * (sin(_Time.y * _Speed)+1));
+                }
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 o.normal = v.normal;
