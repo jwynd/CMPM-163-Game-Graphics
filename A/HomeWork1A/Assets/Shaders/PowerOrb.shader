@@ -4,10 +4,7 @@ Shader "Custom/PowerOrb"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        _Shininess ("Shininess", Float) = 10
-        _SpecColor ("Specular Color", Color) = (1,1,1,1)
-        _Spike ("Growth", Float) = 1.0
+        _Spike ("Max Size", Float) = 1.0
         _Speed ("Speed", Float) = 1.0
 
     }
@@ -22,9 +19,6 @@ Shader "Custom/PowerOrb"
 
             #include "UnityCG.cginc"
 
-            uniform float4 _Color;
-            uniform float _Shininess;
-            uniform float4 _SpecColor;
             uniform float _Spike;
             uniform float _Speed;
 
